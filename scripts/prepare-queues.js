@@ -1,19 +1,17 @@
-const amqp = require('amqplib');
+const amqp = require("amqplib");
 
 class PrepareQueues {
-  constructor() {
-
-  }
+  constructor() { }
 
   async run() {
-    const me = this
+    const me = this;
     try {
-      let conn = await amqp.connect('amqp://localhost')
-      let channel = await conn.createChannel()
+      let conn = await amqp.connect("amqp://localhost");
+      let channel = await conn.createChannel();
     } catch (e) {
-      throw e
+      throw e;
     }
   }
 }
 
-new PrepareQueues().run()
+new PrepareQueues().run();

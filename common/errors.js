@@ -20,72 +20,71 @@ class BaseErrorWithArgs extends BaseError {
 
 class Unauthorized extends BaseError {
   constructor() {
-    super('Unauthorized')
-    this.statusCode = 401
+    super("Unauthorized");
+    this.statusCode = 401;
   }
 }
 
-
 class UserNotFound extends BaseError {
   constructor(args = {}) {
-    super('User not found')
-    this.status_code = 404
+    super("User not found");
+    this.status_code = 404;
   }
 }
 
 class InvalidPassword extends BaseError {
   constructor(args = {}) {
-    super('Invalid password')
-    this.status_code = 400
+    super("Invalid password");
+    this.status_code = 400;
   }
 }
 
 class UserAlreadyRegistered extends BaseError {
   constructor(args = {}) {
-    super('User already registered')
-    this.status_code = 500
+    super("User already registered");
+    this.status_code = 500;
   }
 }
 
 class FailedToSendToQueue extends BaseError {
   constructor(args = {}) {
-    super('Failed to send message to queue')
-    this.status_code = 500
+    super("Failed to send message to queue");
+    this.status_code = 500;
   }
 }
 
 class FailedToPublish extends BaseError {
   constructor(args = {}) {
-    super('Failed to publish message to exchange')
-    this.status_code = 500
+    super("Failed to publish message to exchange");
+    this.status_code = 500;
   }
 }
 
 class SKUAlreadyExists extends BaseError {
   constructor(args = {}) {
-    super('Product with the given SKU already exists')
-    this.status_code = 409
+    super("Product with the given SKU already exists");
+    this.status_code = 409;
   }
 }
 
 class SKUNotFound extends BaseError {
   constructor(args = {}) {
-    super('Product Not Found')
-    this.status_code = 409
+    super("Product Not Found");
+    this.status_code = 409;
   }
 }
 
 class InvalidQuantity extends BaseError {
-  constructor(args = {quantities, item}) {
-    super(`Invalid Quantity (${quantities}) given for the ${item}`)
-    this.status_code = 409
+  constructor(args = { quantities, item }) {
+    super(`Invalid Quantity (${quantities}) given for the ${item}`);
+    this.status_code = 409;
   }
 }
 
 class NoProductsFound extends BaseError {
   constructor(args = {}) {
-    super('No Products Found')
-    this.status_code = 409
+    super("No Products Found");
+    this.status_code = 409;
   }
 }
 
@@ -99,5 +98,5 @@ module.exports = {
   SKUAlreadyExists,
   SKUNotFound,
   InvalidQuantity,
-  NoProductsFound
-}
+  NoProductsFound,
+};

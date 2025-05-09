@@ -1,44 +1,44 @@
 const Countries = {
-  India: 'IN'
-}
+  India: "IN",
+};
 
 const ShortIdPrefix = {
-  Default: 'AA',
-  Farms: 'FA',
-  Lots: 'LO'
-}
+  Default: "AA",
+  Farms: "FA",
+  Lots: "LO",
+};
 
-const ShortIdCharacters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const ShortIdCharacters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const Roles = {
-  SuperUser: 'SU',
-  Admin: 'AD',
-  Proprietor: 'PR',
-  Farmer: 'FR'
-}
+  SuperUser: "SU",
+  Admin: "AD",
+  Proprietor: "PR",
+  Farmer: "FR",
+};
 
 const MessageHistoryStatus = {
-  Queued: 'Queued',
-  Completed: 'Completed',
-  Failed: 'Failed',
-  Skipped: 'Skipped',
-}
+  Queued: "Queued",
+  Completed: "Completed",
+  Failed: "Failed",
+  Skipped: "Skipped",
+};
 
 const Exchanges = {
-  Notifications: 'notifications'
-}
+  Notifications: "notifications",
+};
 
 const NotificationTypes = {
-  WhatsApp: 'WhatsApp'
-}
+  WhatsApp: "WhatsApp",
+};
 
 const NotificationStatus = {
-  Scheduled: 'Scheduled',
-  Sent: 'Sent',
-  Failed: 'Failed'
-}
+  Scheduled: "Scheduled",
+  Sent: "Sent",
+  Failed: "Failed",
+};
 
-const MaxProductsPerPage = 10
+const MaxProductsPerPage = 10;
 
 module.exports = {
   Countries,
@@ -49,5 +49,5 @@ module.exports = {
   Exchanges,
   NotificationTypes,
   NotificationStatus,
-  MaxProductsPerPage
-}
+  MaxProductsPerPage,
+};
