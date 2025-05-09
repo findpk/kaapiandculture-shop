@@ -59,7 +59,7 @@ class ProductService extends BaseHelper {
                     productDetails.quantities,
                 );
                 if (!_.isEmpty(invalidWeights))
-                    throw new Errors.InvalidQuantityForTierPricing(
+                    throw new Errors.InvalidQuantity(
                         invalidWeights,
                         "TierPricing",
                     );
@@ -76,7 +76,7 @@ class ProductService extends BaseHelper {
                     productDetails.quantities,
                 );
                 if (!_.isEmpty(invalidWeights))
-                    throw new Errors.InvalidQuantityForTierPricing(
+                    throw new Errors.InvalidQuantity(
                         invalidWeights,
                         "Inventory",
                     );

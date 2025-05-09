@@ -75,7 +75,7 @@ class SKUNotFound extends BaseError {
 }
 
 class InvalidQuantity extends BaseError {
-  constructor(args = { quantities, item }) {
+  constructor(quantities, item) {
     super(`Invalid Quantity (${quantities}) given for the ${item}`);
     this.status_code = 409;
   }
