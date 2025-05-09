@@ -1,0 +1,39 @@
+{
+  "app": {
+    "port": 4444,
+    "hashing": {
+      "salt_rounds": 10
+    },
+    "jwt": {
+      "expires_in": "60h",
+      "algorithm": "HS256",
+      "secret": "f6d168b5cc4800ac6041a70346312b5300624c990e0571eb12f963b56ba3d6f25dad8eb4f58387f332f6c1423721e866eae9d8fc22d37fe0dff0573f64df975443be5c12711e002bd8699fe3686d294886165148ceb9ea17e73bd53ae55e460dedc0c18903d0fc4477f5038d01cd3c53647daabc41cdacb83bb7fd1e6a6bb636"
+    }
+  },
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "kaapiandculture_shop",
+    "user": "guest",
+    "password": "guest"
+  },
+  "amqp": {
+    "protocol": "amqp",
+    "host": "localhost",
+    "port": 5672,
+    "user": "guest",
+    "password": "guest",
+    "mappings": [
+      {
+        "exchange": "notifications",
+        "type": "fanout",
+        "bindings": [
+          {
+            "queue": "notifications",
+            "routing_key": ""
+          }
+        ]
+      }
+    ]
+  }
+}
