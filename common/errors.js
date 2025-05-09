@@ -75,6 +75,20 @@ class SKUNotFound extends BaseError {
   }
 }
 
+class InvalidQuantity extends BaseError {
+  constructor(args = {quantities, item}) {
+    super(`Invalid Quantity (${quantities}) given for the ${item}`)
+    this.status_code = 409
+  }
+}
+
+class NoProductsFound extends BaseError {
+  constructor(args = {}) {
+    super('No Products Found')
+    this.status_code = 409
+  }
+}
+
 module.exports = {
   Unauthorized,
   UserNotFound,
@@ -83,5 +97,7 @@ module.exports = {
   FailedToSendToQueue,
   FailedToPublish,
   SKUAlreadyExists,
-  SKUNotFound
+  SKUNotFound,
+  InvalidQuantity,
+  NoProductsFound
 }

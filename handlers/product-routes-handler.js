@@ -36,6 +36,15 @@ class ProductRoutesHandler extends BaseHelper {
     }
   }
 
+  async getAllProducts(req, res, next) {
+    const me = this
+    try {
+      let result = await me.productService.getAllProducts(req.query)
+      me.replySuccess(res, result)
+    } catch (e) {
+      me.replyError(res, e)
+    }
+  }
 }
 
 module.exports = ProductRoutesHandler

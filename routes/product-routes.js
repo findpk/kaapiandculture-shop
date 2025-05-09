@@ -41,6 +41,15 @@ class ProductRoutes extends BaseHelper {
             }
         )
 
+        me.router.get('/v1/product/fetchAll',
+            [
+                validateQuery(Schema.GetAllProduct)
+            ],
+            async (req, res, next) => {
+                return await me.productRoutesHandler.getAllProducts(req, res, next)
+            }
+        )
+
         return me.router
     }
 }

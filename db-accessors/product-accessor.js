@@ -37,6 +37,25 @@ class ProductAccessor extends BaseHelper {
     }
   }
 
+  async getAllByOffsetAndLimit(limit, offset = 0){
+    const me = this
+    try {
+      return await me.pgp.any(`SELECT data from products order by modified_date limit $1 offset $2`, [limit, offset])
+    } catch (e) {
+      throw e
+    }
+  }
+
+  async getTotalProducts(){
+    const me = this
+    try {
+      let response=await me.pgp.any(`SELECT count(*) from products`)
+      return response[0].count
+    } catch (e) {
+      throw e
+    }
+  }
+
 }
 
 module.exports = ProductAccessor

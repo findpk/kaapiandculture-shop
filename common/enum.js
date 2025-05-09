@@ -38,6 +38,8 @@ const NotificationStatus = {
   Failed: 'Failed'
 }
 
+const MaxProductsPerPage = 10
+
 module.exports = {
   Countries,
   ShortIdPrefix,
@@ -46,5 +48,6 @@ module.exports = {
   MessageHistoryStatus,
   Exchanges,
   NotificationTypes,
-  NotificationStatus
+  NotificationStatus,
+  MaxProductsPerPage
 }

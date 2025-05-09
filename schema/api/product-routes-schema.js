@@ -12,7 +12,10 @@ const Product = Joi.object({
     description: Joi.string().required(),
     category: Joi.string().required(),
     images: Joi.array().allow(Joi.string()).required(),
-    quantities: Joi.array().allow(Joi.number()).required()
+    quantities: Joi.array().allow(Joi.number()).required(),
+    sale_price: Joi.number().required(),
+    tier_pricing: Joi.object().optional(),
+    available_units: Joi.object().required()
 })
 
 const UpdateProduct = Joi.object({
@@ -23,15 +26,24 @@ const UpdateProduct = Joi.object({
     description: Joi.string().optional(),
     category: Joi.string().optional(),
     images: Joi.array().allow(Joi.string()).optional(),
-    quantities: Joi.array().allow(Joi.number()).optional()
+    quantities: Joi.array().allow(Joi.number()).optional(),
+    sale_price: Joi.number().required(),
+    tier_pricing: Joi.object().optional(),
+    available_units: Joi.object().optional()
 })
 
 const GetProduct = Joi.object({
     sku_id: Joi.string().required()
 })
 
+const GetAllProduct = Joi.object({
+    page: Joi.number().required(),
+    per_page: Joi.number().max(10).required()
+})
+
 module.exports = {
     Product,
     GetProduct,
-    UpdateProduct
+    UpdateProduct,
+    GetAllProduct
 }
