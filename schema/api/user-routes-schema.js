@@ -5,8 +5,15 @@ const Joi = require("joi"),
 
 const SignUp = Joi.object({
   company_name: Joi.string().required(),
-  address: Joi.string().required(),
-  email: Joi.string().email().required(),
+  address: Joi.object({
+    postal_code: Joi.number().required(),
+    prefecture: Joi.string().required(),
+    city: Joi.string().required(),
+    sub_area: Joi.string().required(),
+    block_number: Joi.string().required(),
+    building_number: Joi.string().required(),
+    country: Joi.string().required()
+  }).required(), email: Joi.string().email().required(),
   pwd: Joi.string().pattern(new RegExp(Constants.PwdRegex)).required(),
   confirm_pwd: Joi.ref("pwd"),
   mobile: Joi.string()

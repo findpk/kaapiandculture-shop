@@ -88,6 +88,33 @@ class NoProductsFound extends BaseError {
   }
 }
 
+class OrderNotFound extends BaseError {
+  constructor(args = {}) {
+    super("Order Not Found");
+    this.status_code = 409;
+  }
+}
+class EmptyCart extends BaseError {
+  constructor(args = {}) {
+    super("Place order request with no line items");
+    this.status_code = 409;
+  }
+}
+
+class OutOfStock extends BaseError {
+  constructor(sku) {
+    super(`Inventory Unavailable for sku ${sku}`);
+    this.status_code = 409;
+  }
+}
+
+class InvalidPrice extends BaseError {
+  constructor(sku, given_price, actual_price, mode) {
+    super(`Invalid ${mode} Given: ${given_price}, Actual: ${actual_price} for ${sku}`);
+    this.status_code = 409;
+  }
+}
+
 module.exports = {
   Unauthorized,
   UserNotFound,
@@ -99,4 +126,8 @@ module.exports = {
   SKUNotFound,
   InvalidQuantity,
   NoProductsFound,
+  OrderNotFound,
+  EmptyCart,
+  OutOfStock,
+  InvalidPrice
 };

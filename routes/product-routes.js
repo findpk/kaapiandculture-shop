@@ -15,7 +15,7 @@ class ProductRoutes extends BaseHelper {
         );
     }
 
-    registerUserRoutes() {
+    registerProductRoutes() {
         const me = this;
         me.router.post(
             "/v1/product/add",
