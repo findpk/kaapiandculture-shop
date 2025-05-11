@@ -45,10 +45,7 @@ class UserService extends BaseHelper {
       if (!(await me.bcryptHelper.compare(requestBody.pwd, userDetails.pwd))) {
         throw new Errors.InvalidPassword();
       }
-      let token = me.jwtHelper.sign({
-        email: _.get(userDetails, "email"),
-        role: _.get(userDetails, "role"),
-      });
+      let token = me.jwtHelper.sign(userDetails);
       return {
         message: "Signed in successfully!",
         cookies: {
@@ -72,6 +69,10 @@ class UserService extends BaseHelper {
     } catch (e) {
       throw e;
     }
+  }
+
+  async verifyJwt(headers) {
+    return headers.user_details
   }
 }
 

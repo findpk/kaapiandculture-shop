@@ -2,7 +2,8 @@ const { Router } = require("express"),
     BaseHelper = require("../base-helper"),
     { validateBody, validateQuery, validateParams } = require("./../middlewares/validate"),
     Schema = require("./../schema/api/order-routes-schema"),
-    OrderRoutesHandler = require("./../handlers/order-routes-handler");
+    OrderRoutesHandler = require("./../handlers/order-routes-handler"),
+    { authenticate, checkSignIn } = require("../middlewares/authenticate");
 
 class OrderRoutes extends BaseHelper {
     constructor(dependencies, configs, context) {
@@ -19,7 +20,10 @@ class OrderRoutes extends BaseHelper {
         const me = this;
         me.router.post(
             "/v1/order/place",
-            [validateBody(Schema.PlaceOrder)],
+            [
+                validateBody(Schema.PlaceOrder),
+                authenticate(me.configs.app.jwt)
+            ],
             async (req, res, next) => {
                 return await me.orderRoutesHandler.placeOrder(req, res, next);
             },
@@ -30,6 +34,16 @@ class OrderRoutes extends BaseHelper {
             [validateParams(Schema.GetOrder)],
             async (req, res, next) => {
                 return await me.orderRoutesHandler.getOrder(req, res, next);
+            },
+        );
+
+        me.router.get(
+            "/v1/order/fetch-orders",
+            [
+                authenticate(me.configs.app.jwt)
+            ],
+            async (req, res, next) => {
+                return await me.orderRoutesHandler.getOrders(req, res, next);
             },
         );
 

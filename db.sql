@@ -43,6 +43,11 @@ CREATE TABLE IF NOT EXISTS users
    OIDS=FALSE
  );
 
+ CREATE INDEX IF NOT EXISTS orders_email_id_index
+  ON orders
+  USING btree
+ ((data->'user_info'->>'email'));
+
  CREATE TABLE IF NOT EXISTS inventory
  (
    id uuid,

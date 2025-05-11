@@ -32,13 +32,30 @@ class UserRoutes extends BaseHelper {
         return await me.userRoutesHandler.signUp(req, res, next);
       },
     );
+
     me.router.post(
       "/v1/users/signin",
-      [validateBody(Schema.SignIn), checkSignIn(me.configs.app.jwt)],
+      [
+        validateBody(Schema.SignIn), 
+        checkSignIn(me.configs.app.jwt)
+      ],
       async (req, res, next) => {
         return await me.userRoutesHandler.signIn(req, res, next);
       },
     );
+
+    me.router.post(
+      "/v1/users/verify-jwt",
+      [
+        validateBody(Schema.VerifyJWT),
+        authenticate(me.configs.app.jwt)
+      ],
+      async (req, res, next) => {
+        return await me.userRoutesHandler.verifyJwt(req, res, next);
+      },
+    );
+
+
     return me.router;
   }
 }

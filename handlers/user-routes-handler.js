@@ -25,6 +25,17 @@ class UserRoutesHandler extends BaseHelper {
       me.replyError(res, e);
     }
   }
+  
+  async verifyJwt(req, res, next) {
+    const me = this;
+    try {
+      let result = await me.userService.verifyJwt(req.headers);
+      me.replySuccess(res, result);
+    } catch (e) {
+      me.replyError(res, e);
+    }
+  }
+
 }
 
 module.exports = UserRoutesHandler;

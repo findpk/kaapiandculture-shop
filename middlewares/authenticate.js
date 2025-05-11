@@ -3,15 +3,23 @@ const jwt = require("jsonwebtoken"),
 
 const authenticate = (jwtOptions) => {
   return (req, res, next) => {
-    let token = _.get(req, "cookies.jwt");
+    let token = _.get(req, "cookies.jwt", req.body.jwt);
     if (!token) {
       return res.status(403).send({
         error: "Missing jwt token",
       });
     }
-    let decoded = jwt.verify(token, jwtOptions.secret, {
-      algorithms: [jwtOptions.algorithm],
-    });
+    let decoded;
+    try {
+      decoded = jwt.verify(token, jwtOptions.secret, {
+        algorithms: [jwtOptions.algorithm],
+      });
+    } catch (e) {
+      return res.status(409).send({
+        message: "JsonWebTokenError: invalid token",
+      });
+    }
+    _.unset(decoded, 'pwd')
     _.set(req, "headers.user_details", decoded);
     next();
   };

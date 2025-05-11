@@ -9,7 +9,7 @@ class OrderRoutesHandler extends BaseHelper {
     async placeOrder(req, res, next) {
         const me = this;
         try {
-            let result = await me.orderService.placeOrder(req.body);
+            let result = await me.orderService.placeOrder(req.body, req.headers.user_details);
             me.replySuccess(res, result);
         } catch (e) {
             console.log(e)
@@ -21,6 +21,16 @@ class OrderRoutesHandler extends BaseHelper {
         const me = this;
         try {
             let result = await me.orderService.getOrder(req.params.order_id);
+            me.replySuccess(res, result);
+        } catch (e) {
+            me.replyError(res, e);
+        }
+    }
+
+    async getOrders(req, res, next) {
+        const me = this;
+        try {
+            let result = await me.orderService.getOrders(req.headers.user_details);
             me.replySuccess(res, result);
         } catch (e) {
             me.replyError(res, e);

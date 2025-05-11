@@ -28,7 +28,12 @@ const SignIn = Joi.object({
   pwd: Joi.string().pattern(new RegExp(Constants.PwdRegex)),
 });
 
+const VerifyJWT = Joi.object({
+  jwt: Joi.string().required()
+});
+
 module.exports = {
   SignUp,
   SignIn,
+  VerifyJWT
 };

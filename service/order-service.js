@@ -38,14 +38,21 @@ class OrderService extends BaseHelper {
         }
     }
 
-    async placeOrder(order) {
+    _appendUserDetails(order, userDetails){
+        order.user_info = _.merge(order.user_info, {
+            email: userDetails.email,
+            mobile: userDetails.mobile,
+            company_name: userDetails.company_name,
+            tax_number: userDetails.tax_number
+        })
+    }
+
+    async placeOrder(order, userDetails) {
         const me = this;
         try {
             let orderId = uuid.v4();
             await me._validateLineItems(order)
-            /* 
-                Todo: Retrive user details from jwt and append those in user_info
-            */
+            me._appendUserDetails(order,userDetails)
             await me.orderAccessor.insert({
                 id: orderId,
                 data: order,
@@ -65,6 +72,16 @@ class OrderService extends BaseHelper {
             let response = await me.orderAccessor.getById(orderId);
             if (_.isEmpty(response)) throw new Errors.OrderNotFound();
             return response[0].data;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async getOrders(userDetails){
+        const me = this;
+        try {
+            let response = await me.orderAccessor.getByEmail(userDetails.email);
+            return _.map(response,'data');
         } catch (e) {
             throw e;
         }

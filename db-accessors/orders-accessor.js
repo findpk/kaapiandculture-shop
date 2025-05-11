@@ -44,6 +44,18 @@ class OrdersAccessor extends BaseHelper {
             throw e;
         }
     }
+
+    async getByEmail(email) {
+        const me = this;
+        try {
+            return await me.pgp.any(
+                `SELECT data from orders where data->'user_info'->>'email' = $1`,
+                [email],
+            );
+        } catch (e) {
+            throw e;
+        }
+    }
 }
 
 module.exports = OrdersAccessor;
